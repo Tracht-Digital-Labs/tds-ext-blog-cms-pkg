@@ -529,7 +529,7 @@ function PostEditor({
         <label className="tds-field-row">
           Autor
           <select className="field-boxed" value={String(form.author_id)} onChange={(e) => set("author_id", Number(e.target.value))}>
-            <option value="0">— kein Autor —</option>
+            <option value="0">Kein Autor</option>
             {authors.map((a) => (
               <option key={a.id} value={a.id}>{a.name}</option>
             ))}
@@ -761,7 +761,7 @@ function AuthorManager({
           <label className="tds-field-row">
             <span>Aus Panel-Nutzer</span>
             <select className="field-boxed" value={pickedUser} onChange={(e) => setPickedUser(e.target.value)}>
-              <option value="">— Nutzer wählen —</option>
+              <option value="">Nutzer wählen</option>
               {importable.map((u) => (
                 <option key={u.id} value={u.id}>{u.name ?? u.email}</option>
               ))}

@@ -26,7 +26,7 @@ return [
             . 'weiterlesen. Liefert nur veröffentlichte Beiträge in der camelCase-Form, '
             . 'die `tds-shared` als `BlogPost` definiert; der Text bleibt Markdown und '
             . 'wird erst im Frontend gerendert. **Ein Datenbankproblem gibt eine leere '
-            . 'Seite zurück, niemals 500** — der statische Build fällt dann auf seine '
+            . 'Seite zurück, niemals 500**, der statische Build fällt dann auf seine '
             . 'eingebauten Vorgaben zurück statt zu scheitern.',
         'auth' => 'public',
         'params' => [
@@ -35,14 +35,14 @@ return [
             ['in' => 'query', 'name' => 'cursor', 'type' => 'string', 'description' => 'Cursor aus der vorigen Antwort.'],
         ],
         'responses' => [
-            ['status' => 200, 'description' => '`{posts: [...], nextCursor}` — bei einem Fehler eine leere Seite.'],
+            ['status' => 200, 'description' => '`{posts: [...], nextCursor}`, bei einem Fehler eine leere Seite.'],
         ],
     ],
     [
         'method' => 'GET',
         'pattern' => '/content/blog/popular',
         'tag' => 'Öffentlich',
-        'summary' => 'Beliebte Beiträge — mangels Zähler die neuesten',
+        'summary' => 'Beliebte Beiträge, mangels Zähler die neuesten',
         'description' => 'Dieses Modul führt **keinen** Aufrufzähler, „beliebt" fällt daher '
             . 'bewusst auf „neueste zuerst" zurück. Die Route existiert trotzdem, weil '
             . 'das Blog-Frontend einen gefüllten Tab erwartet; ein 404 wäre dort eine '
@@ -61,7 +61,7 @@ return [
         'pattern' => '/content/blog/{slug:[a-z0-9-]+}',
         'tag' => 'Öffentlich',
         'summary' => 'Einen veröffentlichten Beitrag lesen',
-        'description' => 'Aus dem an den Site-Key gebundenen Blog und nur veröffentlicht — '
+        'description' => 'Aus dem an den Site-Key gebundenen Blog und nur veröffentlicht: '
             . 'ein Entwurf ist über diese Route nicht erreichbar und ergibt 404. Für die '
             . 'Übergangsrelease bleibt der bisherige Standard-Blog die Rückfallauswahl, '
             . 'wenn kein gebundener Site-Key vorliegt.',
@@ -69,14 +69,14 @@ return [
         'params' => [$slug, $langQuery],
         'responses' => [
             ['status' => 200, 'description' => 'Der Beitrag in der `BlogPost`-Form.'],
-            ['status' => 404, 'description' => 'Kein veröffentlichter Beitrag mit diesem Slug — auch bei einem Datenbankfehler.'],
+            ['status' => 404, 'description' => 'Kein veröffentlichter Beitrag mit diesem Slug, auch bei einem Datenbankfehler.'],
         ],
     ],
     [
         'method' => 'GET',
         'pattern' => '/content/topics',
         'tag' => 'Öffentlich',
-        'summary' => 'Kuratierte Themen — bewusst leer',
+        'summary' => 'Kuratierte Themen, bewusst leer',
         'description' => 'Kuratierte Themen waren eine Funktion von `tds-content-api`, für '
             . 'die es hier keine Entsprechung gibt. Die Route antwortet in der Form, '
             . 'die die Frontends ohnehin als Rückfall behandeln, damit deren Build '
@@ -91,7 +91,7 @@ return [
         'method' => 'GET',
         'pattern' => '/content/snippets',
         'tag' => 'Öffentlich',
-        'summary' => 'Eigene Textbausteine — bewusst leer',
+        'summary' => 'Eigene Textbausteine, bewusst leer',
         'description' => 'Wie `/content/topics`: übernommen, damit die öffentlichen Builds '
             . 'unverändert durchlaufen.',
         'auth' => 'public',
@@ -119,7 +119,7 @@ return [
         'summary' => 'Alle registrierten Blogs',
         'permission' => 'blog:read',
         'responses' => [
-            ['status' => 200, 'description' => '`{blogs: [{id, blog_key, name, cache_url, updated_at}]}` — `cache_url` ist nur der Übergangs-Fallback; neue Verbindungen stehen in der Verbindungsressource.'],
+            ['status' => 200, 'description' => '`{blogs: [{id, blog_key, name, cache_url, updated_at}]}`: `cache_url` ist nur der Übergangs-Fallback; neue Verbindungen stehen in der Verbindungsressource.'],
             ['status' => 401, 'description' => 'Keine Sitzung.'],
             ['status' => 403, 'description' => 'Kein `blog:read`.'],
         ],
@@ -254,7 +254,7 @@ return [
         'method' => 'GET',
         'pattern' => '/blogs/{blog:[a-z0-9-]+}/posts',
         'tag' => 'Redaktion',
-        'summary' => 'Beiträge eines Blogs — Entwürfe eingeschlossen',
+        'summary' => 'Beiträge eines Blogs: Entwürfe eingeschlossen',
         'description' => 'Die redaktionelle Sicht, im Gegensatz zur öffentlichen '
             . '`/content/blog`: hier sind auch unveröffentlichte Beiträge dabei.',
         'permission' => 'blog:read',
@@ -294,7 +294,7 @@ return [
             . 'Byline soll das Speichern nicht blockieren.'
             . "\n\n" . 'Der Seiten-Cache wird **artikelgenau** neu gebaut: gemeldet wird '
             . 'genau dieser Beitrag (`{type:"post", id:"<slug>"}`), und welche Seiten das '
-            . 'sind — Artikelseite, Übersicht, Kategorie, Schlagwort, Autor, Feed — '
+            . 'sind (Artikelseite, Übersicht, Kategorie, Schlagwort, Autor, Feed) '
             . 'entscheidet der öffentliche Blog anhand seiner eigenen Routen-Tabelle. '
             . 'Wurde die Gegensprache im selben Aufruf maschinell übersetzt, entfällt die '
             . 'Sprachangabe, damit auch der englische Artikel neu gerendert wird.',
@@ -305,7 +305,7 @@ return [
             ['in' => 'body', 'name' => 'title', 'type' => 'string', 'required' => true, 'description' => 'Darf nicht leer sein.'],
             ['in' => 'body', 'name' => 'body', 'type' => 'markdown', 'required' => true, 'description' => 'Der Beitragstext als Markdown. Darf nicht leer sein.'],
             ['in' => 'body', 'name' => 'lang', 'type' => 'de|en', 'description' => 'Sprache dieser Fassung; Vorgabe `de`.'],
-            ['in' => 'body', 'name' => 'draft', 'type' => 'bool', 'description' => 'Vorgabe **true** — ohne Angabe wird als Entwurf gespeichert.'],
+            ['in' => 'body', 'name' => 'draft', 'type' => 'bool', 'description' => 'Vorgabe **true**, ohne Angabe wird als Entwurf gespeichert.'],
             ['in' => 'body', 'name' => 'category', 'type' => 'string', 'description' => 'Vorgabe `allgemein`.'],
             ['in' => 'body', 'name' => 'excerpt', 'type' => 'string', 'description' => 'Anrisstext.'],
             ['in' => 'body', 'name' => 'meta_description', 'type' => 'string', 'description' => 'SEO-Beschreibung, auf 300 Zeichen gekürzt.'],
@@ -315,7 +315,7 @@ return [
             ['in' => 'body', 'name' => 'published_at', 'type' => 'datetime', 'description' => 'Nur für Veröffentlichtes; leer ⇒ jetzt.'],
         ],
         'responses' => [
-            ['status' => 200, 'description' => '`{ok: true, translated: bool, cache_status, cached, rebuilt, skipped, failed, unknownEvents}` — '
+            ['status' => 200, 'description' => '`{ok: true, translated: bool, cache_status, cached, rebuilt, skipped, failed, unknownEvents}`: '
                 . '`translated` sagt, ob die Gegensprache geschrieben wurde; `cached`, ob '
                 . 'wirklich ein Cache-Neubau rausgegangen ist. Ein Entwurf löst nie einen '
                 . 'aus, deshalb darf die Oberfläche das nicht aus `ok` ableiten.'],
@@ -371,7 +371,7 @@ return [
         'summary' => 'Fehlende Übersetzungen für alle Beiträge nachziehen',
         'description' => 'Läuft über die von Hand gepflegten Beiträge und legt die '
             . 'Gegensprache maschinell an. **Maschinelle Fassungen sind Ziele, keine '
-            . 'Quellen** und werden übersprungen — sonst würde eine Übersetzung eine '
+            . 'Quellen** und werden übersprungen, sonst würde eine Übersetzung eine '
             . 'Übersetzung übersetzen.',
         'permission' => 'blog:write',
         'params' => [$blog],

@@ -202,7 +202,7 @@ function BlogPosts({ blog }: { blog: Blog }) {
       // apiFetch rejects when the request never reaches the API; uncaught, the
       // progress line stayed on screen for good.
       setBackfillStatus(null);
-      toast.danger("Übersetzungslauf fehlgeschlagen — die API ist nicht erreichbar.");
+      toast.danger("Übersetzungslauf fehlgeschlagen, die API ist nicht erreichbar.");
       return;
     }
     if (res.ok) {
@@ -232,7 +232,7 @@ function BlogPosts({ blog }: { blog: Blog }) {
     const res = await sendJson(`/blogs/${blog.blog_key}/cache/rebuild`, "POST", { slug }).catch(() => null);
     if (res === null) {
       setCacheStatus(null);
-      toast.danger("Cache-Neubau fehlgeschlagen — die API ist nicht erreichbar.");
+      toast.danger("Cache-Neubau fehlgeschlagen, die API ist nicht erreichbar.");
       return;
     }
     if (res.ok) {
@@ -253,7 +253,7 @@ function BlogPosts({ blog }: { blog: Blog }) {
   const openPost = async (p: PostMeta) => {
     const res = await apiFetch(`/blogs/${blog.blog_key}/posts/${p.slug}?lang=${p.lang}`).catch(() => null);
     if (res === null) {
-      toast.danger("Beitrag konnte nicht geladen werden — die API ist nicht erreichbar.");
+      toast.danger("Beitrag konnte nicht geladen werden, die API ist nicht erreichbar.");
       return;
     }
     if (!res.ok) {
@@ -450,7 +450,7 @@ function PostEditor({
     setBusy(false);
     if (res === null) {
       // The editor stays open with everything typed into it.
-      toast.danger("Speichern fehlgeschlagen — die API ist nicht erreichbar.");
+      toast.danger("Speichern fehlgeschlagen, die API ist nicht erreichbar.");
       return;
     }
     if (!res.ok) {
@@ -465,7 +465,7 @@ function PostEditor({
     // promise a rebuild after every draft save.
     toast.success(
       body.cached === true
-        ? "Beitrag gespeichert — der Neubau seiner Seiten wurde angefragt."
+        ? "Beitrag gespeichert, der Neubau seiner Seiten wurde angefragt."
         : form.draft
           ? "Entwurf gespeichert. Entwürfe sind nicht öffentlich."
           : cacheConfigured
@@ -484,7 +484,7 @@ function PostEditor({
     setBusy(false);
     setConfirmDelete(false);
     if (res === null) {
-      toast.danger("Löschen fehlgeschlagen — die API ist nicht erreichbar.");
+      toast.danger("Löschen fehlgeschlagen, die API ist nicht erreichbar.");
       return;
     }
     if (res.ok) {
@@ -664,7 +664,7 @@ function AuthorManager({
   const post = async (payload: Record<string, unknown>, reset?: () => void) => {
     const res = await sendJson("/blog/authors", "POST", payload).catch(() => null);
     if (res === null) {
-      toast.danger("Speichern fehlgeschlagen — die API ist nicht erreichbar.");
+      toast.danger("Speichern fehlgeschlagen, die API ist nicht erreichbar.");
       return;
     }
     if (res.ok) {
@@ -706,7 +706,7 @@ function AuthorManager({
       // apiFetch rejects when the request never reaches the API; without this
       // the rejection went unhandled and the dialog stayed open on nothing.
       setPendingDelete(null);
-      toast.danger("Löschen fehlgeschlagen — die API ist nicht erreichbar.");
+      toast.danger("Löschen fehlgeschlagen, die API ist nicht erreichbar.");
     } finally {
       setDeleting(false);
     }

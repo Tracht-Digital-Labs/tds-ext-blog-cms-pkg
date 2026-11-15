@@ -31,6 +31,7 @@ composer install && composer test   # phpunit; DB-backed tests need TDS_TEST_DB_
 - Blog registration lives under *Einstellungen → Blog-CMS*; `/blog` only selects and edits.
 - Outcomes are toasts; configuration problems stay in-flow. Call the API with `apiFetch`.
 - Migrations stay in the `20260728*` band. Don't touch `version`; the admin host pins `^0.3.x`.
+- Follows the TDS quality standard (`../tds-ops/standards/quality.md`): no AI slop, clean code.
 
 ## Topic files
 

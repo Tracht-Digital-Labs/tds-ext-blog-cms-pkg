@@ -59,7 +59,7 @@ Admin routes use the core `UserContext` permissions `blog:read` and
 
 ## Runtime requirements
 
-- `@tracht-digital-solutions/tds-shared >=0.33.0` for the `./data` SWR export.
+- `@tracht-digital-labs/tds-shared >=0.33.0` for the `./data` SWR export.
 - `tracht-digital-solutions/tds-frontend-contract ^1.10.0` for `SiteCache` and
   `CacheEvent`.
 

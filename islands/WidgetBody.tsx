@@ -1,4 +1,4 @@
-import { SummaryMetric } from "@tracht-digital-solutions/tds-shared/components";
+import { SummaryMetric } from "@tracht-digital-labs/tds-shared/components";
 
 /** "Blog-Beiträge" widget body — the total post count, from `/blog/summary`. */
 export default function PostsCount() {

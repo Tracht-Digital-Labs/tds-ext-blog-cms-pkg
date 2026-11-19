@@ -43,7 +43,7 @@ Public routes: [public-api.md](public-api.md).
 
 - `PostEditor` in `islands/BlogsList.tsx`: title, category, excerpt, cover hint, markdown body,
   draft ↔ publish, SEO fields, author.
-- Preview uses **`renderMarkdown` from `@tracht-digital-solutions/tds-shared/markdown`**
+- Preview uses **`renderMarkdown` from `@tracht-digital-labs/tds-shared/markdown`**
   (≥ 0.20.2). The customer wiki renders with the same function, and an XSS boundary must not
   exist twice; never re-inline a copy. It is **escape-first**: every text run is HTML-escaped
   before any markdown transform, and hrefs are allow-listed (http, https, mailto, relative).

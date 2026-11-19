@@ -82,7 +82,7 @@ describe("published surface", () => {
 
 describe("dependency hygiene", () => {
   it("depends on the contract, not on a sibling path", () => {
-    const contract = "@tracht-digital-solutions/tds-frontend-contract";
+    const contract = "@tracht-digital-labs/tds-frontend-contract";
     const range = pkg.dependencies?.[contract] ?? pkg.peerDependencies?.[contract];
     expect(range, "the contract must be a declared dependency").toBeDefined();
     expect(range, "a file:/link: range never resolves for a consumer").not.toMatch(/^(file:|link:)/);
@@ -92,7 +92,7 @@ describe("dependency hygiene", () => {
     // 0.59.1 brought `./admin` (useRuntimeSettings, usePairing), `./format`,
     // `<Alert>`, `<SummaryMetric>` and the `tds-lint-primitives` bin, which the
     // islands, their tests and `npm run lint:primitives` rely on.
-    expect(pkg.peerDependencies?.["@tracht-digital-solutions/tds-shared"]).toBe(">=0.59.1");
+    expect(pkg.peerDependencies?.["@tracht-digital-labs/tds-shared"]).toBe(">=0.59.1");
   });
 
   it("stays inside the 0.3.x line the admin product pins with a caret", () => {

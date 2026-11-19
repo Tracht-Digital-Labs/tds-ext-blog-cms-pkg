@@ -1,18 +1,18 @@
 import { useEffect, useMemo, useState } from "react";
-import { Alert, ConfirmDialog, Spinner, toast } from "@tracht-digital-solutions/tds-shared/components";
+import { Alert, ConfirmDialog, Spinner, toast } from "@tracht-digital-labs/tds-shared/components";
 import {
   AnimatedItem,
   AnimatedList,
   Collapse,
   Presence,
   TabIndicator,
-} from "@tracht-digital-solutions/tds-shared/motion/react";
-import { apiFetch, sendJson } from "@tracht-digital-solutions/tds-shared/api";
-import { invalidate, staleClass, useCachedJson } from "@tracht-digital-solutions/tds-shared/data";
+} from "@tracht-digital-labs/tds-shared/motion/react";
+import { apiFetch, sendJson } from "@tracht-digital-labs/tds-shared/api";
+import { invalidate, staleClass, useCachedJson } from "@tracht-digital-labs/tds-shared/data";
 // The escape-first renderer moved to tds-shared: the customer wiki renders
 // handbook articles with the same function, and an XSS boundary must not
 // exist twice. Its test suite moved with it.
-import { renderMarkdown } from "@tracht-digital-solutions/tds-shared/markdown";
+import { renderMarkdown } from "@tracht-digital-labs/tds-shared/markdown";
 
 interface Blog {
   id: number;

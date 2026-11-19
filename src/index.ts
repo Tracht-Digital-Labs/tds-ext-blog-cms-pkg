@@ -1,4 +1,4 @@
-import { defineExtension } from "@tracht-digital-solutions/tds-frontend-contract";
+import { defineExtension } from "@tracht-digital-labs/tds-frontend-contract";
 
 /**
  * Blog-CMS extension — multi-blog post management, ported from tds-content-api's
@@ -30,7 +30,7 @@ export default defineExtension({
     {
       id: "blog-cms-posts",
       title: "Blog-Beiträge",
-      island: "@tracht-digital-solutions/tds-ext-blog-cms/widgets/Widget.astro",
+      island: "@tracht-digital-labs/tds-ext-blog-cms/widgets/Widget.astro",
       size: "sm",
       permission: "blog:read",
       dataEndpoint: "/blog/summary",
@@ -41,14 +41,14 @@ export default defineExtension({
     {
       id: "blog-cms",
       label: "Blog-CMS",
-      island: "@tracht-digital-solutions/tds-ext-blog-cms/islands/Settings.astro",
+      island: "@tracht-digital-labs/tds-ext-blog-cms/islands/Settings.astro",
       order: 50,
     },
   ],
   routes: [
     {
       pattern: "/blog",
-      entrypoint: "@tracht-digital-solutions/tds-ext-blog-cms/pages/Index.astro",
+      entrypoint: "@tracht-digital-labs/tds-ext-blog-cms/pages/Index.astro",
       permission: "blog:read",
     },
   ],
